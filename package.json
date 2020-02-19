@@ -29,6 +29,7 @@
     "pluralize": "^8.0.0",
     "redis-cli": "^1.4.0",
     "rxjs": "^6.5.3",
+    "tedis": "^0.1.12",
     "zone.js": "^0.9.1",
     "typescript": "^3.5.3"
   },
