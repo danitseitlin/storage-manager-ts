@@ -1,5 +1,5 @@
-import { LocalStorage } from './local-storage';
-import { RedisStorage } from './redis-storage';
+import { LocalStorage } from './storage-managers/local-storage';
+import { RedisStorage } from './storage-managers/redis-storage';
 
 
 export class StorageManager {
