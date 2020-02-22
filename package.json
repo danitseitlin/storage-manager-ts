@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register tests/**/*.test.ts"
+    "test-redis": "mocha -r ts-node/register tests/redis-storage.ts"
   },
   "repository": {
     "type": "git",

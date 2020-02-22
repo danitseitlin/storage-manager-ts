@@ -1,21 +1,17 @@
 import { Tedis } from 'tedis';
-
-export class RedisStorage { 
-    private client: Tedis;
-
-    constructor(private host: string, private port: number, private password: string) {
-        this.client = new Tedis({
-            host: this.host,
-            port: this.port,
-            password: this.password
-        });
+import { StorageManager } from '../storage';
+export class RedisStorage extends StorageManager{ 
+    public client: Tedis;
+    private host: string;
+    private port: number;
+    private password?: string;
+    constructor(data: Options) {
+        super()
+        this.client = new Tedis(data);
     }
 
-    /**
-     * Returning the client
-     * @returns The redis client
-     */
-    getClient(): Tedis {
-        return this.client;
-    }
+    
+
 }
+
+export interface Options {host: string, port: number, password?: string}

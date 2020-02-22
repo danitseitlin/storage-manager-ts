@@ -1,15 +1,14 @@
 import { LocalStorage } from './storage-managers/local-storage';
-import { RedisStorage } from './storage-managers/redis-storage';
-
+import { RedisStorage, Options } from './storage-managers/redis-storage';
 
 export class StorageManager {
-    private storageType: LocalStorage | RedisStorage;
-    private client: any
-    constructor(options: Options) {
-        if(options.clientType === 'local') this.storageType = new LocalStorage();
-        else if(options.clientType === 'redis') this.storageType = new RedisStorage(options.options.host, options.options.port, options.options.password);
-        this.client = this.storageType.getClient();
-    }
+    public localStorageClient: LocalStorage = null;
+    public redisStorageClient: RedisStorage = null;
+    // constructor(private clientData: {client:'local'} | {client: 'redis', options: {host: string, port: number, password?: string}}) {
+    //     this.client = new LocalStorage();
+    //     if(clientData.client === 'redis') this.client = new RedisStorage(clientData.options);
+    // }
+
     /**
      * Returning an array of values of given keys
      * @param keys The given keys to return their values
@@ -52,17 +51,23 @@ export class StorageManager {
         else comparison = key.includes(regex);
         return comparison;
     }
+    // getClient() {
+    //     return this.client.getClient();
+    // }
 }
 
+/**
+ * @param clientType The type of the client.
+ * @param options The options given for the client type
+ */
+// export interface Options {
+//     clientType: 'local' | 'redis',
+//     options: RedisOptions | null | undefined
+// }
 
-export interface Options {
-    clientType: 'local' | 'redis',
-    options: RedisOptions | null | undefined
-}
-
-export interface RedisOptions {
-    host: string,
-    port: number,
-    password?: string
-}
+// export interface RedisOptions {
+//     host: string,
+//     port: number,
+//     password?: string
+// }
 
