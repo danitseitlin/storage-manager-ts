@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
     - run: cd /
     - run: wget http://download.redis.io/redis-stable.tar.gz
     - run: tar xvzf redis-stable.tar.gz
-    - run: cd redis-stable && make
+    - run: cd redis-stable && make && make test && sudo make install
     - run: ./redis-server &
     - run: npm run test-redis
       env:
