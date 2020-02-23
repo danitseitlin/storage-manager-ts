@@ -22,7 +22,8 @@ jobs:
     - run: cd /
     - run: wget http://download.redis.io/redis-stable.tar.gz
     - run: tar xvzf redis-stable.tar.gz
-    - run: cd redis-stable && make && make test && sudo make install
+    - run: cd redis-stable && make && sudo make install
+    - run: ls
     - run: ./redis-server &
     - run: npm run test-redis
       env:
