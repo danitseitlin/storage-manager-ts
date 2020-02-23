@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { StorageManager } from '../src/storage';
 import { RedisStorage } from '../src/storage-managers/redis-storage';
 const storage = new RedisStorage({
     host: '127.0.0.1',
@@ -11,9 +10,7 @@ describe('Testing databases', async function() {
     it('Set key', async () => {
         client.set('redis', 'key');
         const value: any = await client.get('redis');
+        console.log(`value: ${value}`);
         expect(value).eql('key', 'The value of the key');
-    });
-    it('Get key', async () => {
-        
     });
 });
