@@ -25,6 +25,6 @@ jobs:
     - run: cd redis-stable && make && sudo make install
     - run: ./usr/local/bin/redis-server &
     - run: ps -ef | grep redis
-    - run: ./redis-cli ping
+    - run: ./usr/local/bin/redis-cli ping
       env:
         CI: true
