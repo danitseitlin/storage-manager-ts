@@ -8,6 +8,6 @@
       "strict": true,
 	  "moduleResolution": "node"
     },
-    "include": ["src", "lib"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+    "include": ["lib"],
+    "exclude": ["node_modules", "tests"]
 }

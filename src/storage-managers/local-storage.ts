@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { StorageManager } from "../storage";
 
-@Injectable()
-export class LocalStorage {
-    private storage: Storage;
+export class LocalStorage extends StorageManager{
+    private client: Storage
     constructor() {
-        this.storage = localStorage;
+        super();
+        this.client = localStorage;
     }
 
     /**
@@ -12,8 +12,8 @@ export class LocalStorage {
      * @param key The key value to return
      * @param jsonParsing If the output returned will be json parsed (Not required) by default set to true...
      */
-    get(key: string, jsonParsing?: boolean): string | any {
-        let value: string | any = this.storage.getItem(key);
+    get(key: string, jsonParsing?: boolean): string | {[key: string]: any} {
+        let value: string | any = this.client.getItem(key);
         if(jsonParsing === undefined) jsonParsing = true;
         if((jsonParsing === true) && (value.includes("{") && value.includes("}"))) {
             value = JSON.parse(value);
@@ -27,7 +27,7 @@ export class LocalStorage {
      * @param value The value to set to the key
      */
     set(key: string, value: any) {
-        return this.storage.setItem(key, value);
+        return this.client.setItem(key, value);
     }
 
     /**
@@ -35,50 +35,18 @@ export class LocalStorage {
      * @param key The key to remove
      */
     remove(key: string) {
-        return this.storage.removeItem(key);
+        return this.client.removeItem(key);
     }
     
     /**
-     * A function that filters keys by regular expression
-     * @param regex The regular expression to filter with, could be just a text, use * to mention starts with
-     */
-    filterKeys(regex: string): string[] {
-        let keys: string[] = [];
-        const storageKeys = Object.keys(this.storage);
-        for(let i = 0; i < storageKeys.length; i++) {
-            const key: string = storageKeys[i];
-            if(this.compareKeys(regex, key)) {
-                keys.push(key);
-            }
-        }
-        return keys;
-    }
-  
-    /**
-     * Returning an array of values of given keys
+     * Getting a JSON containing a key infront of their value
      * @param keys The given keys to return their values
+     * @returns JSON with keys and their values
      */
-    getValuesByKeys(keys: string[]): any[] {
-        let values: any[] = [];
-        for(let i = 0; i < keys.length; i++) {
-            const key: string = keys[i];
-            const value: string = this.get(key);
-            values.push(value);
-        }
+    async getKeys(keys: string[]): Promise<{[key: string]: any}> {
+        const values: {[key: string]: any} = {};
+        for(const key of keys) 
+            values[key] = await this.client.get(key);
         return values;
-    }
-  
-    /**
-     * Returning if the keys match with a regex, * will indicate that an a key starts with the regex after the *
-     * @param regex The regex to filter the key with
-     * @param key The key to filter with the regex
-     */
-    compareKeys(regex: string, key: string) {
-        let comparison: boolean = false;
-        //If key starts with * we will make sure the key starts with the given regex value
-        if(regex[0] === "*") comparison = key.startsWith(regex.substr(1));
-        //Otherwise, normal comparison
-        else comparison = key.includes(regex);
-        return comparison;
     }
 }
