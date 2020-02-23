@@ -22,7 +22,7 @@ jobs:
     - run: cd /
     - run: wget http://download.redis.io/redis-stable.tar.gz
     - run: tar xvzf redis-stable.tar.gz
-    - run: cd redis-stable
+    - run: cd redis-stable && ls
     - run: ls
     - run: make
     - run: redis-server &
