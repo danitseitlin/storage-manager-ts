@@ -1,27 +1,4 @@
-import { LocalStorage } from './storage-managers/local-storage';
-import { RedisStorage, Options } from './storage-managers/redis-storage';
-
 export class StorageManager {
-    public localStorageClient: LocalStorage = null;
-    public redisStorageClient: RedisStorage = null;
-    // constructor(private clientData: {client:'local'} | {client: 'redis', options: {host: string, port: number, password?: string}}) {
-    //     this.client = new LocalStorage();
-    //     if(clientData.client === 'redis') this.client = new RedisStorage(clientData.options);
-    // }
-
-    /**
-     * Returning an array of values of given keys
-     * @param keys The given keys to return their values
-     */
-    async getValuesByKeys(keys: string[]): Promise<any[]> {
-        let values: any[] = [];
-        for(let i = 0; i < keys.length; i++) {
-            const key: string = keys[i];
-            const value = await this.client.getClient().get(key);
-            values.push(value);
-        }
-        return values;
-    }
 
     /**
      * A function that filters keys by regular expression
@@ -51,23 +28,4 @@ export class StorageManager {
         else comparison = key.includes(regex);
         return comparison;
     }
-    // getClient() {
-    //     return this.client.getClient();
-    // }
 }
-
-/**
- * @param clientType The type of the client.
- * @param options The options given for the client type
- */
-// export interface Options {
-//     clientType: 'local' | 'redis',
-//     options: RedisOptions | null | undefined
-// }
-
-// export interface RedisOptions {
-//     host: string,
-//     port: number,
-//     password?: string
-// }
-

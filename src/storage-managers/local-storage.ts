@@ -1,6 +1,9 @@
-export class LocalStorage {
+import { StorageManager } from "../storage";
+
+export class LocalStorage extends StorageManager{
     private client: Storage
     constructor() {
+        super();
         this.client = localStorage;
     }
 
@@ -34,7 +37,16 @@ export class LocalStorage {
     remove(key: string) {
         return this.client.removeItem(key);
     }
-    getClient() {
-        return this.client;
+    
+    /**
+     * Getting a JSON containing a key infront of their value
+     * @param keys The given keys to return their values
+     * @returns JSON with keys and their values
+     */
+    async getKeys(keys: string[]): Promise<{[key: string]: any}> {
+        const values: {[key: string]: any} = {};
+        for(const key of keys) 
+            values[key] = await this.client.get(key);
+        return values;
     }
 }
