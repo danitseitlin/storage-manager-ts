@@ -22,8 +22,8 @@ jobs:
     - run: cd /
     - run: wget http://download.redis.io/redis-stable.tar.gz
     - run: tar xvzf redis-stable.tar.gz
-    - run: cd redis-stable && make
-    - run: sudo make install && ls && ./redis-server
+    - run: cd redis-stable && make && sudo make install
+    - run: ./usr/local/bin/redis-server &
     - run: ps -ef | grep redis
     - run: ./redis-cli ping
       env:
