@@ -26,5 +26,6 @@ jobs:
     - run: redis-server &
     - run: ps -ef | grep redis
     - run: redis-cli ping
+    - run: npm run redis-test
       env:
         CI: true
