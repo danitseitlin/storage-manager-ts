@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
         "experimentalDecorators": true,
-      "target": "es6",
-      "module": "commonjs",
-      "declaration": true,
-      "outDir": "./lib",
-      "strict": true,
-	  "moduleResolution": "node"
+        "target": "es6",
+        "module": "commonjs",
+        "declaration": true,
+        "outDir": "./lib",
+        "strict": true,
+	    "moduleResolution": "node"
     },
-    "include": ["lib"],
-    "exclude": ["node_modules", "tests"]
+    "include": ["lib", "src"],
+    "exclude": ["node_modules", "tests", "**/__tests__/*"]
 }
