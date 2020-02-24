@@ -11,6 +11,7 @@ describe('Testing databases', async function() {
         client.set('example', 'value');
         const value: any = await client.get('example');
         expect(value).to.eql('value', 'Value of the key');
+        console.log(`${new Date().toLocaleDateString('GB')}: Get/Set keys is done.`);
     });
     it('getKeys function', async () => {
         client.set('example1', 'value1');
@@ -22,5 +23,6 @@ describe('Testing databases', async function() {
             'example2': 'value2'
         }
         expect(expectedObject).to.eql(object, 'Equality of expected and actual objects');
+        console.log(`${new Date().toLocaleDateString('GB')}: getKeys function is done.`);
     });
 });
