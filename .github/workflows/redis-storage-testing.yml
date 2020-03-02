@@ -5,6 +5,7 @@ on:
     paths:
     - '**/redis-storage.ts'
     - '**/storage.ts'
+    - '**/redis-storage-testing.yml'
 
 jobs:
   build:
