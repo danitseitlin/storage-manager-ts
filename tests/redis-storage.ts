@@ -10,30 +10,42 @@ describe('Testing databases', async function() {
         });
     });
     afterEach(async function(){
-        storage.client.close();
+        storage.close();
     });
     
     it('Sanity', async () => {
-        await storage.client.set('example', 'value');
-        const value: any = await storage.client.get('example');
+        await storage.set('example', 'value');
+        const value: any = await storage.get('example');
         expect(value).to.eql('value', 'Value of the key');
     });
-    
+
     it('getKeys function', async () => {
-        await storage.client.set('example1', 'value1');
-        await storage.client.set('example2', 'value2');
-        await storage.client.set('example3', 'value3');
-        const object = await storage.getKeys(['example1', 'example2']);
-        const expectedObject = {
-            'example1': 'value1',
-            'example2': 'value2'
-        };
-        expect(expectedObject).to.eql(object, 'Equality of expected and actual objects');
+        const keys = await storage.getKeys();
+        expect(Object.keys(keys).length).to.eql(1, 'Keys count');
     });
 
-    it('compareKeys function', async () => {
-        const keys = await storage.client.keys('*');
-        const compare = await storage.compareKeys('*ex', keys[0]);
-        expect(compare).to.eql(true, 'Comparison');
+    it('filterKeys function', async () => {
+        let keys = await storage.filterKeys('*ex');
+        expect(Object.keys(keys).length).to.eql(1, 'Keys count');
+        keys = await storage.filterKeys('*xxxx');
+        expect(Object.keys(keys).length).to.eql(0, 'Keys count');
     });
+
+    // it('getKeys function', async () => {
+    //     await storage.set('example1', 'value1');
+    //     await storage.set('example2', 'value2');
+    //     await storage.set('example3', 'value3');
+    //     const object = await storage.getKeys(['example1', 'example2']);
+    //     const expectedObject = {
+    //         'example1': 'value1',
+    //         'example2': 'value2'
+    //     };
+    //     expect(expectedObject).to.eql(object, 'Equality of expected and actual objects');
+    // });
+
+    // it('compareKeys function', async () => {
+    //     const keys = await storage.keys('*');
+    //     const compare = storage.compareKeys('*ex', keys[0]);
+    //     expect(compare).to.eql(true, 'Comparison');
+    // });
 });

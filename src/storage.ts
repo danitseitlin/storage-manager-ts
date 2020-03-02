@@ -1,14 +1,13 @@
-export class StorageManager {
 
     /**
      * A function that filters keys by regular expression
      * @param regex The regular expression to filter with, could be just a text, use * to mention starts with
      */
-    filterKeys(regex: string, allKeys: string[]): string[] {
+    export function filterKeys(regex: string, allKeys: string[]): string[] {
         let keys: string[] = [];
         for(let i = 0; i < allKeys.length; i++) {
             const key: string = allKeys[i];
-            if(this.compareKeys(regex, key)) {
+            if(compareKeys(regex, key)) {
                 keys.push(key);
             }
         }
@@ -20,7 +19,7 @@ export class StorageManager {
      * @param regex The regex to filter the key with
      * @param key The key to filter with the regex
      */
-    compareKeys(regex: string, key: string): boolean {
+    export function compareKeys(regex: string, key: string): boolean {
         let comparison: boolean = false;
         //If key starts with * we will make sure the key starts with the given regex value
         if(regex[0] === "*") comparison = key.startsWith(regex.substr(1));
@@ -28,4 +27,3 @@ export class StorageManager {
         else comparison = key.includes(regex);
         return comparison;
     }
-}

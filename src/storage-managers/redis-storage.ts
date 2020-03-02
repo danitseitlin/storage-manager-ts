@@ -1,10 +1,8 @@
 import { Tedis } from 'tedis';
-import { StorageManager } from '../storage';
-export class RedisStorage extends StorageManager { 
-    public client: Tedis;
+import { compareKeys } from '../storage';
+export class RedisStorage extends Tedis { 
     constructor(data: Options) {
-        super()
-        this.client = new Tedis(data);
+        super(data);
     }
     
     /**
@@ -12,11 +10,23 @@ export class RedisStorage extends StorageManager {
      * @param keys The given keys to return their values
      * @returns JSON with keys and their values
      */
-    async getKeys(keys: string[]): Promise<{[key: string]: any}> {
+    async getKeys(): Promise<{[key: string]: any}> {
         const values: {[key: string]: any} = {};
+        const keys = await this.keys('*');
         for(const key of keys) 
-            values[key] = await this.client.get(key);
+            values[key] = await this.get(key);
         return values;
+    }
+
+    async filterKeys(regex: string): Promise<string[]> {
+        const allKeys = await this.getKeys();
+        let keys: string[] = [];
+        for(const key in allKeys) {
+            if(compareKeys(regex, key)) {
+                keys.push(key);
+            }
+        }
+        return keys;
     }
 }
 
