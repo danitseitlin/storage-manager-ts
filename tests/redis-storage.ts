@@ -1,10 +1,16 @@
 import { expect } from 'chai';
 import { RedisStorage } from '../src/storage-managers/redis-storage';
+let storage: RedisStorage;
 describe('Testing databases', async function() {
     this.timeout(5 * 60 * 60);
-    const storage = new RedisStorage({
-        host: '127.0.0.1',
-        port: 6379
+    beforeEach(async function(){
+        storage = new RedisStorage({
+            host: '127.0.0.1',
+            port: 6379
+        });
+    });
+    afterEach(async function(){
+        storage.client.close();
     });
     it('Get/Set keys', async () => {
         await storage.client.set('example', 'value');
