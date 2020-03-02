@@ -25,5 +25,5 @@
         if(regex[0] === "*") comparison = key.startsWith(regex.substr(1));
         //Otherwise, normal comparison
         else comparison = key.includes(regex);
-        return comparison;
+        return comparison;//s
     }
