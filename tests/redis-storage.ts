@@ -12,11 +12,13 @@ describe('Testing databases', async function() {
     afterEach(async function(){
         storage.client.close();
     });
-    it('Get/Set keys', async () => {
+    
+    it('Sanity', async () => {
         await storage.client.set('example', 'value');
         const value: any = await storage.client.get('example');
         expect(value).to.eql('value', 'Value of the key');
     });
+    
     it('getKeys function', async () => {
         await storage.client.set('example1', 'value1');
         await storage.client.set('example2', 'value2');
@@ -27,5 +29,11 @@ describe('Testing databases', async function() {
             'example2': 'value2'
         };
         expect(expectedObject).to.eql(object, 'Equality of expected and actual objects');
+    });
+
+    it('compareKeys function', async () => {
+        const keys = await storage.client.keys('*');
+        const compare = await storage.compareKeys('*ex', keys[0]);
+        expect(compare).to.eql(true, 'Comparison');
     });
 });
