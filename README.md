@@ -78,3 +78,5 @@ for(let i = 0; i < keys.length; i++) {
 results:
 1. key myKey1 comparison for regex *myKey is true
 2. key myBoy1 comparison for regex *myKey is false
+
+![Unit testing](https://github.com/danitseitlin/storage-manager-ts/workflows/Unit%20testing/badge.svg)
