@@ -1,6 +1,10 @@
 name: Unit testing
 
-on: [push]
+on:
+  push:
+    paths:
+    - 'src/redis-storage.ts'
+    - 'src/storage.ts'
 
 jobs:
   build:
