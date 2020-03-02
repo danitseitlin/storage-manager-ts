@@ -39,5 +39,10 @@ export class RedisStorage extends Tedis {
 export interface Options {
     host: string,
     port: number,
-    password?: string
+    password?: string,
+    timeout?: number
+    tls?: {
+      key: Buffer
+      cert: Buffer
+    };
 }
