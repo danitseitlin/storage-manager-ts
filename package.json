@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "test-redis": "mocha -r ts-node/register tests/redis-storage.ts",
-    "test-local": "mocha -r ts-node/register tests/local-storage.ts"
+    "test-local": "mocha -r ts-node/register tests/local-storage.ts",
+    "open-browser": "concurrently \"http-server -a localhost -p 1234\" \"open http://localhost:1234/build\""
   },
   "repository": {
     "type": "git",
@@ -25,13 +26,18 @@
   },
   "homepage": "https://github.com/danitseitlin/local-storage-manager#readme",
   "dependencies": {
+    "@types/open": "^6.2.1",
+    "localstorage-memory": "^1.0.3",
+    "open": "^7.0.2",
     "tedis": "^0.1.12"
   },
   "devDependencies": {
     "@types/chai": "^4.2.7",
-    "@types/node": "^13.1.1",
     "@types/mocha": "^7.0.1",
+    "@types/node": "^13.1.1",
     "chai": "^4.2.0",
+    "concurrently": "^5.1.0",
+    "http-server": "^0.12.1",
     "mocha": "^7.0.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"

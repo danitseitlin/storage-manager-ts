@@ -1,14 +1,16 @@
 import { expect } from 'chai';
 import { LocalStorage } from '../src/storage-managers/local-storage';
-let storage: LocalStorage;
 describe('Testing databases', async function() {
     this.timeout(5 * 60 * 60);
-    storage = new LocalStorage();
-    
+
     it('Sanity', async () => {
-        await storage.set('example', 'value');
-        const value: any = await storage.get('example');
-        expect(value).to.eql('value', 'Value of the key');
+        let storage: LocalStorage;
+        storage.setItem('sf', 'ff');
+        console.log(storage.length);
+        // await open('https://sindresorhus.com', {wait: true});
+        // localStorage.setItem('example', 'value');
+        // const value: any = localStorage.getKey('example');
+        // expect(value).to.eql('value', 'Value of the key');
     });
 
     // it('getKeys function', async () => {

@@ -6,7 +6,8 @@
         "declaration": true,
         "outDir": "./lib",
         "strict": true,
-	    "moduleResolution": "node"
+        "moduleResolution": "node",
+        "esModuleInterop": true
     },
     "include": ["lib", "src"],
     "exclude": ["node_modules", "tests", "**/__tests__/*"]
