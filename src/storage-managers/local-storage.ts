@@ -1,4 +1,4 @@
-import { localStorageMocker } from '../../tests/mockers';
+import { storageMocker} from '../../tests/mockers';
 
 export class LocalStorage {
     storage: Storage | any
@@ -7,7 +7,9 @@ export class LocalStorage {
         if(typeof window !== 'undefined') {
             this.storage = window.localStorage;
         }
-        else this.storage = localStorageMocker();
+        else this.storage = new storageMocker();
+        console.log(new storageMocker().constructor)
+        
     }
     get(key: string): any {
         return this.storage.getItem(key);
@@ -19,10 +21,12 @@ export class LocalStorage {
         this.storage.removeItem(key);
     }
     length(): number {
+        if(this.storage.constructor === '[Function: storageMocker]') return this.storage.length();
         return this.storage.length;
     }
-    async getKeys(): Promise<{[key: string]: any}> {
-        return this.storage;
+    getKeys(): Promise<{[key: string]: any}> {
+        if(this.storage.constructor === '[Function: storageMocker]') return this.storage.storage;
+        else return this.storage;
     }
     /**
      * A function that filters keys by regular expression
@@ -30,7 +34,9 @@ export class LocalStorage {
      */
     filterKeys(regex: string): string[] {
         let keys: string[] = [];
-        for(const key in this.storage) {
+        console.log(this.getKeys())
+        for(const key in this.getKeys()) {
+            console.log(key);
             if(this.compareKeys(regex, key)) {
                 keys.push(key);
             }

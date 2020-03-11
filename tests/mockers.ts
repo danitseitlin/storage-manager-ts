@@ -1,18 +1,21 @@
-export var window: {[key: string]: any}  = {localStorage: null};
-export function localStorageMocker() {
-  let storage: {[key: string]: any} = {};
-  return {
-    setItem: function(key: string, value: any) {
-      storage[key] = value || '';
-    },
-    getItem: function(key: string) {
-      return key in storage ? storage[key] : null;
-    },
-    removeItem: function(key: string) {
-      delete storage[key];
-    },
-    get length() {
-      return Object.keys(storage).length;
+export class storageMocker {
+    storage: {[key: string]: any};
+    constructor() {
+        this.storage = {};
     }
-  };
+
+    setItem(key: string, value: any) {
+        this.storage[key] = value || '';
+    }
+
+    getItem(key: string): any {
+        return key in this.storage ? this.storage[key] : null;
+    }
+    removeItem(key: string): void {
+        delete this.storage[key];
+    }
+    get length(): number {
+        return Object.entries(this.storage).length;
+    }
 }
+
