@@ -3,12 +3,10 @@ import { storageMocker} from '../../tests/mockers';
 export class LocalStorage {
     storage: Storage | any
     constructor() {
-        console.log(typeof window)
         if(typeof window !== 'undefined') {
             this.storage = window.localStorage;
         }
         else this.storage = new storageMocker();
-        console.log(new storageMocker().constructor)
         
     }
     get(key: string): any {
@@ -21,11 +19,12 @@ export class LocalStorage {
         this.storage.removeItem(key);
     }
     length(): number {
-        if(this.storage.constructor === '[Function: storageMocker]') return this.storage.length();
+        if(typeof window === 'undefined') return this.storage.length();
         return this.storage.length;
     }
     getKeys(): Promise<{[key: string]: any}> {
-        if(this.storage.constructor === '[Function: storageMocker]') return this.storage.storage;
+        console.log(`storage constructor: ${this.storage.constructor}`)
+        if(typeof window === 'undefined') return this.storage.storage;
         else return this.storage;
     }
     /**
@@ -34,7 +33,6 @@ export class LocalStorage {
      */
     filterKeys(regex: string): string[] {
         let keys: string[] = [];
-        console.log(this.getKeys())
         for(const key in this.getKeys()) {
             console.log(key);
             if(this.compareKeys(regex, key)) {

@@ -12,7 +12,6 @@ describe('Testing databases', async function() {
     });
 
     it('getKeys function', async () => {
-        
         const keys = await storage.getKeys();
         console.log(keys);
         expect(Object.keys(keys).length).to.eql(1, 'Keys count');
