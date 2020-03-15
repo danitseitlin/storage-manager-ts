@@ -1,4 +1,4 @@
-name: Unit testing
+name: Redis storage unit testing
 
 on:
   push:
