@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test-redis": "mocha -r ts-node/register tests/redis-storage.ts",
-    "test-local": "mocha -r ts-node/register tests/local-storage.ts",
+    "test-local": "mocha -r ts-node/register tests/local-storage.ts"
   },
   "repository": {
     "type": "git",
