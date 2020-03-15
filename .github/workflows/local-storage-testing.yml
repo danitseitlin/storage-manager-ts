@@ -1,6 +1,11 @@
 name: Local storage unit testing
 
-on: [push]
+on:
+  push:
+    paths:
+    - '**/local-storage.ts'
+    - '**/storage.ts'
+    - '**/redis-storage-testing.yml'
 
 jobs:
   build:
@@ -18,6 +23,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm install
-    - run: npm local-test
+    - run: npm run test-local
       env:
         CI: true

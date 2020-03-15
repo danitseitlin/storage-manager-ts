@@ -1,52 +1,57 @@
-import { StorageManager } from "../storage";
+import { storageMocker} from '../../tests/mockers';
 
-export class LocalStorage extends StorageManager{
-    private client: Storage
+export class LocalStorage {
+    storage: Storage | any
     constructor() {
-        super();
-        this.client = localStorage;
-    }
-
-    /**
-     * A function that returns the value of a key
-     * @param key The key value to return
-     * @param jsonParsing If the output returned will be json parsed (Not required) by default set to true...
-     */
-    get(key: string, jsonParsing?: boolean): string | {[key: string]: any} {
-        let value: string | any = this.client.getItem(key);
-        if(jsonParsing === undefined) jsonParsing = true;
-        if((jsonParsing === true) && (value.includes("{") && value.includes("}"))) {
-            value = JSON.parse(value);
+        if(typeof window !== 'undefined') {
+            this.storage = window.localStorage;
         }
-        return value;
+        else this.storage = new storageMocker();
+        
     }
-
-    /**
-     * A function that set's the value of a key
-     * @param key The key to set his value
-     * @param value The value to set to the key
-     */
-    set(key: string, value: any) {
-        return this.client.setItem(key, value);
+    get(key: string): any {
+        return this.storage.getItem(key);
     }
-
-    /**
-     * A function that removes a key
-     * @param key The key to remove
-     */
-    remove(key: string) {
-        return this.client.removeItem(key);
+    set(key: string, value: any): void {
+        this.storage.setItem(key, value);
     }
-    
+    delete(key: string): void {
+        this.storage.removeItem(key);
+    }
+    length(): number {
+        if(typeof window === 'undefined') return this.storage.length();
+        return this.storage.length;
+    }
+    getKeys(): Promise<{[key: string]: any}> {
+        console.log(`storage constructor: ${this.storage.constructor}`)
+        if(typeof window === 'undefined') return this.storage.storage;
+        else return this.storage;
+    }
     /**
-     * Getting a JSON containing a key infront of their value
-     * @param keys The given keys to return their values
-     * @returns JSON with keys and their values
+     * A function that filters keys by regular expression
+     * @param regex The regular expression to filter with, could be just a text, use * to mention starts with
      */
-    async getKeys(keys: string[]): Promise<{[key: string]: any}> {
-        const values: {[key: string]: any} = {};
-        for(const key of keys) 
-            values[key] = await this.client.get(key);
-        return values;
+    filterKeys(regex: string): string[] {
+        let keys: string[] = [];
+        for(const key in this.getKeys()) {
+            console.log(key);
+            if(this.compareKeys(regex, key)) {
+                keys.push(key);
+            }
+        }
+        return keys;
+    }
+    /**
+     * Returning if the keys match with a regex, * will indicate that an a key starts with the regex after the *
+     * @param regex The regex to filter the key with
+     * @param key The key to filter with the regex
+     */
+    compareKeys(regex: string, key: string): boolean {
+        let comparison: boolean = false;
+        //If key starts with * we will make sure the key starts with the given regex value
+        if(regex[0] === "*") comparison = key.startsWith(regex.substr(1));
+        //Otherwise, normal comparison
+        else comparison = key.includes(regex);
+        return comparison;
     }
 }
