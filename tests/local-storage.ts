@@ -13,7 +13,6 @@ describe('Testing databases', async function() {
 
     it('getKeys function', async () => {
         const keys = await storage.getKeys();
-        console.log(keys);
         expect(Object.keys(keys).length).to.eql(1, 'Keys count');
     });
 
@@ -22,5 +21,11 @@ describe('Testing databases', async function() {
         expect(Object.keys(keys).length).to.eql(1, 'Keys count');
         keys = storage.filterKeys('*xxxx');
         expect(Object.keys(keys).length).to.eql(0, 'Keys count');
+    });
+
+    it('getKeysByList function', async () => {
+        storage.set('example2', 'value');
+        let keys = storage.getKeysByList(['example', 'example2']);
+        expect(Object.keys(keys).length).to.eql(2, 'Keys count');
     });
 });
