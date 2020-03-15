@@ -30,22 +30,4 @@ describe('Testing databases', async function() {
         keys = await storage.filterKeys('*xxxx');
         expect(Object.keys(keys).length).to.eql(0, 'Keys count');
     });
-
-    // it('getKeys function', async () => {
-    //     await storage.set('example1', 'value1');
-    //     await storage.set('example2', 'value2');
-    //     await storage.set('example3', 'value3');
-    //     const object = await storage.getKeys(['example1', 'example2']);
-    //     const expectedObject = {
-    //         'example1': 'value1',
-    //         'example2': 'value2'
-    //     };
-    //     expect(expectedObject).to.eql(object, 'Equality of expected and actual objects');
-    // });
-
-    // it('compareKeys function', async () => {
-    //     const keys = await storage.keys('*');
-    //     const compare = storage.compareKeys('*ex', keys[0]);
-    //     expect(compare).to.eql(true, 'Comparison');
-    // });
 });
