@@ -25,10 +25,6 @@
   },
   "homepage": "https://github.com/danitseitlin/local-storage-manager#readme",
   "dependencies": {
-    "@types/open": "^6.2.1",
-    "local-web-server": "^4.0.0",
-    "localstorage-memory": "^1.0.3",
-    "open": "^7.0.2",
     "tedis": "^0.1.12"
   },
   "devDependencies": {

@@ -14,7 +14,7 @@ export class storageMocker {
     removeItem(key: string): void {
         delete this.storage[key];
     }
-    get length(): number {
+    length(): number {
         return Object.entries(this.storage).length;
     }
 }
