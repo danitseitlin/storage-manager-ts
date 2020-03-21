@@ -27,5 +27,6 @@ describe('Testing databases', async function() {
         storage.set('example2', 'value');
         let keys = storage.getKeysByList(['example', 'example2']);
         expect(Object.keys(keys).length).to.eql(2, 'Keys count');
+        expect(keys['example2']).to.eql('value', `key value of example2`);
     });
 });
