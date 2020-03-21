@@ -61,7 +61,7 @@ export class LocalStorage {
      */
     getKeysByList(keys: string[]): {[key: string]: any} {
         let finalKeys: {[key: string]: any} = {};
-        for(const key in keys) {
+        for(const key of keys) {
             finalKeys[key] = this.get(key);
         }
         return finalKeys;
