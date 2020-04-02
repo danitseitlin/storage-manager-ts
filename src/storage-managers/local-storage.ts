@@ -71,7 +71,7 @@ export class LocalStorage {
      * A function that filters keys by regular expression
      * @param regex The regular expression to filter with, could be just a text, use * to mention starts with
      */
-    filterKeys(regex: string): string[] {
+    filterKeys(regex: regexComparison): string[] {
         let keys: string[] = [];
         for(const key in this.getKeys()) {
             if(this.compareKeys(regex, key)) {
@@ -86,12 +86,27 @@ export class LocalStorage {
      * @param regex The regex to filter the key with
      * @param key The key to filter with the regex
      */
-    compareKeys(regex: string, key: string): boolean {
-        let comparison: boolean = false;
-        //If key starts with * we will make sure the key starts with the given regex value
-        if(regex[0] === "*") comparison = key.startsWith(regex.substr(1));
-        //Otherwise, normal comparison
-        else comparison = key.includes(regex);
+    compareKeys(regex: regexComparison, key: string): boolean {
+        /** Options
+         * *:start:* - starts with this text
+         * *:end:* - ends with this text
+         */        
+        let comparison = false;
+        if(regex.start !== undefined && regex.end === undefined) comparison = key.startsWith(regex.start);
+        else if(regex.end !== undefined && regex.start === undefined) comparison = key.endsWith(regex.end);
+        else if(regex.start !== undefined && regex.end !== undefined) {
+            if(key.startsWith(regex.start) && key.endsWith(regex.end)) comparison = true;
+        }
         return comparison;
     }
+}
+
+/**
+ * The regex filtering options
+ * @param start a regex for a string at the start
+ * @param end a regex for a string at the end
+ */
+interface regexComparison {
+    start?: string,
+    end?: string
 }

@@ -1,5 +1,4 @@
 import { Tedis } from 'tedis';
-import { compareKeys } from '../storage';
 export class RedisStorage extends Tedis { 
     constructor(data: Options) {
         super(data);
@@ -18,15 +17,39 @@ export class RedisStorage extends Tedis {
         return values;
     }
 
-    async filterKeys(regex: string): Promise<string[]> {
+    /**
+     * Returning if the keys match with a regex, * will indicate that an a key starts with the regex after the *
+     * @param regex The regex to filter the key with
+     * @param key The key to filter with the regex
+     */
+    async filterKeys(regex: regexComparison): Promise<string[]> {
         const allKeys = await this.getKeys();
         let keys: string[] = [];
         for(const key in allKeys) {
-            if(compareKeys(regex, key)) {
+            if(this.compareKeys(regex, key)) {
                 keys.push(key);
             }
         }
         return keys;
+    }
+
+    /**
+     * Returning if the keys match with a regex, * will indicate that an a key starts with the regex after the *
+     * @param regex The regex to filter the key with
+     * @param key The key to filter with the regex
+     */
+    compareKeys(regex: regexComparison, key: string): boolean {
+        /** Options
+         * *:start:* - starts with this text
+         * *:end:* - ends with this text
+         */        
+        let comparison = false;
+        if(regex.start !== undefined && regex.end === undefined) comparison = key.startsWith(regex.start);
+        else if(regex.end !== undefined && regex.start === undefined) comparison = key.endsWith(regex.end);
+        else if(regex.start !== undefined && regex.end !== undefined) {
+            if(key.startsWith(regex.start) && key.endsWith(regex.end)) comparison = true;
+        }
+        return comparison;
     }
 }
 
@@ -45,4 +68,14 @@ export interface Options {
       key: Buffer
       cert: Buffer
     };
+}
+
+/**
+ * The regex filtering options
+ * @param start a regex for a string at the start
+ * @param end a regex for a string at the end
+ */
+interface regexComparison {
+    start?: string,
+    end?: string
 }
