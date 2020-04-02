@@ -71,7 +71,6 @@ for(let i = 0; i < keys.length; i++) {
     const comparison: boolean = storage.compareKeys({start: 'myKey'}, keys[i]);
     console.log(`key ${keys[i]} comparison for regex {start: 'myKey'} is ${comparison}`);
 }
-
 ```
 
 ![Unit testing](https://github.com/danitseitlin/storage-manager-ts/workflows/Unit%20testing/badge.svg)
