@@ -37,7 +37,7 @@ storage.set('myKey', { 'arg1': 'value1' });
 storage.remove('myKey');
 ```
 
-## Filter unique pattern key names:
+## Filtering keys by regex:
 ```
 storage.set('myKey1', '1');
 storage.set('myKey2', '2');
@@ -47,7 +47,7 @@ storage.set('myKey3', '3');
 const keys: string[] = storage.filterKeys({start: 'myKey'});
 ```
 
-## Filtering keys by regex:
+## Getting key values by list:
 ```
 storage.set('myKey1', '1');
 storage.set('myKey2', '2');
