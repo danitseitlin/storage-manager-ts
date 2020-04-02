@@ -25,9 +25,10 @@ describe('Testing databases', async function() {
     });
 
     it('filterKeys function', async () => {
-        let keys = await storage.filterKeys('*ex');
-        expect(Object.keys(keys).length).to.eql(1, 'Keys count');
-        keys = await storage.filterKeys('*xxxx');
-        expect(Object.keys(keys).length).to.eql(0, 'Keys count');
+        let keys = await storage.filterKeys({start: 'ex'});
+        expect(keys.length).to.eql(1, 'Keys count');
+        keys = await storage.filterKeys({start: 'xxxx'});
+        expect(keys.length).to.eql(0, 'Keys count');
     });
 });
+

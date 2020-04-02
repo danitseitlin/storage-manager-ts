@@ -7,20 +7,20 @@ describe('Testing databases', async function() {
     
     it('Sanity', async () => {
         storage.set('example', 'value');
-        const value: any = await storage.get('example');
+        const value: any = storage.get('example');
         expect(value).to.eql('value', 'Value of the key');
     });
 
     it('getKeys function', async () => {
-        const keys = await storage.getKeys();
+        const keys = storage.getKeys();
         expect(Object.keys(keys).length).to.eql(1, 'Keys count');
     });
 
     it('filterKeys function', async () => {
-        let keys = storage.filterKeys('*ex');
-        expect(Object.keys(keys).length).to.eql(1, 'Keys count');
-        keys = storage.filterKeys('*xxxx');
-        expect(Object.keys(keys).length).to.eql(0, 'Keys count');
+        let keys = storage.filterKeys({start: 'ex'});
+        expect(keys.length).to.eql(1, 'Keys count');
+        keys = storage.filterKeys({start: 'xxxx'});
+        expect(keys.length).to.eql(0, 'Keys count');
     });
 
     it('getKeysByList function', async () => {
