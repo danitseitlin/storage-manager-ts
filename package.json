@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danitseitlin/local-storage-manager.git"
+    "url": "git+https://github.com/danitseitlin/storage-manager-ts.git"
   },
   "keywords": [
     "storage",
@@ -22,9 +22,9 @@
   "author": "Dani Tseiltin",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/danitseitlin/local-storage-manager/issues"
+    "url": "https://github.com/danitseitlin/storage-manager-ts/issues"
   },
-  "homepage": "https://github.com/danitseitlin/local-storage-manager#readme",
+  "homepage": "https://github.com/danitseitlin/storage-manager-ts#readme",
   "dependencies": {
     "tedis": "^0.1.12"
   },
