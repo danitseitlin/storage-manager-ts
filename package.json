@@ -1,6 +1,6 @@
 {
   "name": "storage-manager-ts",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "A storage manager that supports storage managing with local and Redis storages",
   "main": "lib/index.js",
   "scripts": {
