@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A storage manager that supports storage managing with local and Redis storages",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test-redis": "mocha -r ts-node/register tests/redis-storage.ts",
