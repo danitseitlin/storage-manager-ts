@@ -1,4 +1,4 @@
-import { storageMocker} from '../mockers';
+import { storageMocker} from './local-storage-mocker';
 
 export class LocalStorage {
     storage: Storage | any
