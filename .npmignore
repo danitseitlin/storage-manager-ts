@@ -4,4 +4,3 @@ src
 tests
 package-lock.json
 tsconfig.json
-index.ts
