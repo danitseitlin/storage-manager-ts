@@ -1,13 +1,14 @@
 # storage-manager-ts
 A storage manager that supports storage managing in local-storage and redis
 
-## Initialize your storage manager:
+## Local Storage
+### Initialize your storage manager:
 ```
 import { LocalStorage } from 'storage-manager-ts';
 const storage = new LocalStorage();
 ```
 
-## Get a key:
+### Get a key:
 ```
 const keyAsString = storage.get('myKey', false);
 
@@ -18,7 +19,7 @@ const keyAsJson = storage.get('myKey');
 const keyAsJson2 = storage.get('myKey', true);
 ```
 
-## Set a key:
+### Set a key:
 The value type is any and that means you have the flexibily to set any value you want!
 ```
 //Set a key with string as value
@@ -31,13 +32,13 @@ storage.set('myKey', 5);
 storage.set('myKey', { 'arg1': 'value1' });
 ```
 
-## Remove a key:
+### Remove a key:
 ```
 //Removing the key from the storage
-storage.remove('myKey');
+storage.delete('myKey');
 ```
 
-## Filtering keys by regex:
+### Filtering keys by regex:
 ```
 storage.set('myKey1', '1');
 storage.set('myKey2', '2');
@@ -47,7 +48,7 @@ storage.set('myKey3', '3');
 const keys: string[] = storage.filterKeys({start: 'myKey'});
 ```
 
-## Getting key values by list:
+### Getting key values by list:
 ```
 storage.set('myKey1', '1');
 storage.set('myKey2', '2');
@@ -58,7 +59,7 @@ const keys: string[] = storage.filterKeys({start: 'myKey'});
 const values: any[] = storage.getKeysByList(keys);
 ```
 
-## Comparing keys by regex:
+### Comparing keys by regex:
 ```
 storage.set('myKey1', '1');
 storage.set('myBoy', 'yay');
