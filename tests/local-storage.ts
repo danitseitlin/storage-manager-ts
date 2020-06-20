@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { LocalStorage } from '../local-storage';
-import { filterKeys,  } from '../index'
+import { filterKeys } from '../index'
 
 const storage = new LocalStorage();
 describe('Testing databases', async function() {
