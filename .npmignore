@@ -1,6 +1,14 @@
 .github
 node_modules
-src
+index.ts
+local-storage.ts
 tests
+**/tests/*.ts
+**/tests/*.js
 package-lock.json
 tsconfig.json
+
+
+
+
+
