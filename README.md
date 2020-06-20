@@ -11,10 +11,8 @@ const storage = new LocalStorage();
 ### Get a key:
 ```
 const keyAsString = storage.get('myKey', false);
-
 //by default the response is in json form
 const keyAsJson = storage.get('myKey');
-
 //or you could give it a true value
 const keyAsJson2 = storage.get('myKey', true);
 ```
@@ -24,10 +22,8 @@ The value type is any and that means you have the flexibily to set any value you
 ```
 //Set a key with string as value
 storage.set('myKey', 'myValue');
-
 //Set a key with number as value
 storage.set('myKey', 5);
-
 //Set a key with JSON as value
 storage.set('myKey', { 'arg1': 'value1' });
 ```
