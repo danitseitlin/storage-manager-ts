@@ -1,7 +1,6 @@
-# storage-manager-ts 
-&middot; [![GitHub license](https://img.shields.io/badge/license-BSD%203%20Clause-blue.svg)](https://github.com/danitseitlin/storage-manager-ts/blob/master/LICENSE) [![npm version](http://img.shields.io/npm/v/storage-manager-ts.svg?style=flat)](https://npmjs.org/package/storage-manager-ts "View this project on npm") ![CI](https://github.com/danitseitlin/storage-manager-ts/workflows/CI/badge.svg)
+# Storage Manager &middot; [![GitHub license](https://img.shields.io/badge/license-BSD%203%20Clause-blue.svg)](https://github.com/danitseitlin/storage-manager-ts/blob/master/LICENSE) [![npm version](http://img.shields.io/npm/v/storage-manager-ts.svg?style=flat)](https://npmjs.org/package/storage-manager-ts "View this project on npm") ![CI](https://github.com/danitseitlin/storage-manager-ts/workflows/CI/badge.svg)
 ## About
-A project that contains utilities for local storage & storage utilities
+A project that contains utilities for local storage & general storage purposes
 
 ## Quick start
 ### Initialize your local storage manager:
