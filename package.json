@@ -26,15 +26,13 @@
     "url": "https://github.com/danitseitlin/storage-manager-ts/issues"
   },
   "homepage": "https://github.com/danitseitlin/storage-manager-ts#readme",
-  "dependencies": {
-    "tedis": "^0.1.12"
-  },
   "devDependencies": {
     "@types/chai": "^4.2.7",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.1.1",
     "chai": "^4.2.0",
     "mocha": "^7.0.1",
+    "npm-package-deployer": ">0.0.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
   }
