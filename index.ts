@@ -15,7 +15,7 @@ export function filterKeys(keys: string[], regex: regexComparison): string[] {
     return filteredKeys;
 }
 /**
- * Returning if the keys match with a regex, * will indicate that an a key starts with the regex after the *
+ * Returning if a key match with a regex, * will indicate that an a key starts with the regex after the *
  * @param regex The regex to filter the key with
  * @param key The key to filter with the regex
  */

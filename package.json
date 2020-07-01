@@ -1,13 +1,15 @@
 {
   "name": "storage-manager-ts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A storage manager that supports storage managing with local and Redis storages",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register",
-    "local-storage-testing": "npm run test tests/local-storage.ts"
+    "unit-tests": "npm run test tests/local-storage.ts",
+    "pre-deploy": "npm run unit-tests && npm run build",
+    "deploy": "npm-deploy storage-manager-ts"
   },
   "repository": {
     "type": "git",
@@ -24,15 +26,13 @@
     "url": "https://github.com/danitseitlin/storage-manager-ts/issues"
   },
   "homepage": "https://github.com/danitseitlin/storage-manager-ts#readme",
-  "dependencies": {
-    "tedis": "^0.1.12"
-  },
   "devDependencies": {
     "@types/chai": "^4.2.7",
     "@types/mocha": "^7.0.1",
     "@types/node": "^13.1.1",
     "chai": "^4.2.0",
     "mocha": "^7.0.1",
+    "npm-package-deployer": ">0.0.1",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.4"
   }
