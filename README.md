@@ -1,13 +1,17 @@
-# storage-manager-ts
-A storage manager that supports storage managing in local-storage and redis
+# storage-manager-ts 
+&middot; [![GitHub license](https://img.shields.io/badge/license-BSD%203%20Clause-blue.svg)](https://github.com/danitseitlin/storage-manager-ts/blob/master/LICENSE) [![npm version](http://img.shields.io/npm/v/storage-manager-ts.svg?style=flat)](https://npmjs.org/package/storage-manager-ts "View this project on npm") ![CI](https://github.com/danitseitlin/storage-manager-ts/workflows/CI/badge.svg)
+## About
+A project that contains utilities for local storage & storage utilities
 
-## Local Storage
+## Quick start
 ### Initialize your storage manager:
 ```
 import { LocalStorage } from 'storage-manager-ts';
 const storage = new LocalStorage();
 ```
-
+## Functions list
+|:---------- |:--------------------------------------------------------------------------------------------------------- |
+| filterKeys | Returning if the keys match with a regex, * will indicate that an a key starts with the regex after the * |
 ### Get a key:
 ```
 const keyAsString = storage.get('myKey', false);
@@ -70,4 +74,3 @@ for(let i = 0; i < keys.length; i++) {
 }
 ```
 
-![Unit testing](https://github.com/danitseitlin/storage-manager-ts/workflows/Unit%20testing/badge.svg)

@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register",
-    "local-storage-testing": "npm run test tests/local-storage.ts"
+    "unit-tests": "npm run test tests/local-storage.ts",
+    "pre-deploy": "npm run unit-tests && npm run build",
+    "deploy": "npm-deploy storage-manager-ts"
   },
   "repository": {
     "type": "git",
